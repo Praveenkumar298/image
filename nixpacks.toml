@@ -1,9 +1,1 @@
-[phases.setup]
-nixPkgs = ["python311"]
-
-[phases.install]
-cmds = ["cd backendimage && pip install -r requirements.txt"]
-
-[start]
-cmd = "cd backendimage && gunicorn backendimage.wsgi:application"
 
