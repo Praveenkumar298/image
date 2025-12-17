@@ -4,10 +4,14 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
-COPY . /app
+
+# Copy only backendimage first
+COPY backendimage /app/backendimage
+
+WORKDIR /app/backendimage
 
 RUN pip install --upgrade pip \
     && pip install -r requirements.txt \
     && python manage.py collectstatic --noinput
 
-CMD ["gunicorn", "backendimage.wsgi:application", "--bind", "0.0.0.0:${PORT}"]
+CMD gunicorn backendimage.wsgi:application --bind 0.0.0.0:$PORT
