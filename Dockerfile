@@ -8,8 +8,7 @@ WORKDIR /app
 COPY backendimage/ /app/
 
 RUN pip install --upgrade pip \
-    && pip install -r requirements.txt
-
-EXPOSE 8000
+    && pip install -r requirements.txt \
+    && python manage.py collectstatic --noinput
 
 CMD gunicorn backend.wsgi --bind 0.0.0.0:$PORT
