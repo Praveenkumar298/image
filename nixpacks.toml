@@ -5,4 +5,5 @@ nixPkgs = ["python311"]
 cmds = ["cd backendimage && pip install -r requirements.txt"]
 
 [start]
-cmd = "cd backendimage && gunicorn backend.wsgi"
+cmd = "cd backendimage && gunicorn backendimage.wsgi:application"
+
