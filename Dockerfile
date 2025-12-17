@@ -5,10 +5,10 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY backendimage/ /app/
+COPY . /app
 
 RUN pip install --upgrade pip \
     && pip install -r requirements.txt \
     && python manage.py collectstatic --noinput
 
-CMD gunicorn backend.wsgi --bind 0.0.0.0:$PORT
+CMD ["gunicorn", "backendimage.wsgi:application", "--bind", "0.0.0.0:${PORT}"]
